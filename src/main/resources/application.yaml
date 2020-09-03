@@ -1,0 +1,9 @@
+spring:
+  data:
+    mongodb:
+      authentication-database: admin
+      database: jumbo
+      host: localhost
+      port: 27017
+      username: admin
+      password: secret
