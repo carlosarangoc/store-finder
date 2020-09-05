@@ -3,7 +3,4 @@ spring:
     mongodb:
       authentication-database: admin
       database: jumbo
-      host: localhost
-      port: 27017
-      username: admin
-      password: secret
+      uri: mongodb://admin:secret@localhost:27017/

@@ -4,20 +4,26 @@ import com.carlosarango.jumbo.storefinder.domain.Store;
 import com.carlosarango.jumbo.storefinder.repository.StoreRepository;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.lang.reflect.Type;
-import java.nio.file.Files;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.ResourceLoader;
 import org.springframework.stereotype.Component;
+import org.springframework.util.FileCopyUtils;
 
 @Component
 @RequiredArgsConstructor
+@Slf4j
 public class JsonDataLoader implements CommandLineRunner {
 
+  private final ResourceLoader resourceLoader;
   private final StoreRepository repository;
 
   @Override
@@ -35,7 +41,13 @@ public class JsonDataLoader implements CommandLineRunner {
   }
 
   private String readJsonContent() throws IOException {
-    File file = new File(getClass().getClassLoader().getResource("stores.json").getFile());
-    return Files.readString(file.toPath());
+    Resource resource = resourceLoader.getResource("classpath:stores.json");
+    try (InputStream inputStream = resource.getInputStream()) {
+      byte[] bdata = FileCopyUtils.copyToByteArray(inputStream);
+      return new String(bdata, StandardCharsets.UTF_8);
+    } catch (IOException e) {
+      log.error("Error reading stores.json file", e);
+      throw e;
+    }
   }
 }

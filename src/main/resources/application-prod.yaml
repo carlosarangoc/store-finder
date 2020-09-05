@@ -1,0 +1,6 @@
+spring:
+  data:
+    mongodb:
+      authentication-database: admin
+      database: jumbo
+      uri: mongodb://${MONGO_USER}:${MONGO_PASSWORD}@jumbocluster-shard-00-00.wy3rd.gcp.mongodb.net:27017,jumbocluster-shard-00-01.wy3rd.gcp.mongodb.net:27017,jumbocluster-shard-00-02.wy3rd.gcp.mongodb.net:27017/jumbo?ssl=true&replicaSet=atlas-hdz93d-shard-0&authSource=admin&retryWrites=true&w=majority

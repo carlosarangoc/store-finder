@@ -5,9 +5,11 @@ import com.carlosarango.jumbo.storefinder.repository.StoreRepository;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 @Service
+@Slf4j
 public class StoreService {
 
   private final StoreRepository storeRepository;
@@ -20,6 +22,7 @@ public class StoreService {
   public List<Store> findStoresNearLocation(Double lon, Double lat, int size) {
     if (Objects.isNull(stores) || stores.isEmpty()) {
       // Load all stores in memory since the list is not very large.
+      log.info("Loading stores from the DB");
       stores = storeRepository.findAll();
     }
 
