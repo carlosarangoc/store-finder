@@ -7,6 +7,8 @@ Test it:
 curl https://store-finder-api-xsilgukcba-uc.a.run.app/stores?lat=50.827242&lon=5.726086&size=3
 ```
 
+A front end application ([soure](https://github.com/carlosarangoc/store-finder-ui)) is available too at https://store-finder-ui.vercel.app/
+
 ## API
 
 The API is a spring boot application using Mongo DB as a repository.
@@ -54,3 +56,14 @@ The request has 3 parameters:
 * Push the image: 
 
 `docker push carlosarangoc/store-finder:latest`
+
+### Resources
+
+This application was built using:
+
+* Java 11
+* Spring boot
+* Maven
+* Mongo DB
+* Spring data mongo
+* Spring Web MVC
