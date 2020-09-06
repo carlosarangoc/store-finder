@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 @Slf4j
 public class StoreService {
 
+  private static final int MAX_QUERY_SIZE = 100;
   private final StoreRepository storeRepository;
   private List<Store> stores;
 
@@ -24,6 +25,11 @@ public class StoreService {
       // Load all stores in memory since the list is not very large.
       log.info("Loading stores from the DB");
       stores = storeRepository.findAll();
+    }
+
+    // Limit the size of the response if needed
+    if (size > MAX_QUERY_SIZE) {
+      size = MAX_QUERY_SIZE;
     }
 
     return stores.stream()

@@ -67,3 +67,6 @@ This application was built using:
 * Mongo DB
 * Spring data mongo
 * Spring Web MVC
+* Docker
+* Google Cloud Run
+
